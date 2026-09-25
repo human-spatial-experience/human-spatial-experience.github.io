@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embedding Human Spatial Experience in AI-Aided Architectural Design · CHI 2027 Workshop</title>
+<meta name="description" content="CHI 2027 workshop bridging cognitive science, neuroscience, architecture, and AI through an HCI lens. Pittsburgh, May 2027.">
+<meta property="og:title" content="Embedding Human Spatial Experience in AI-Aided Architectural Design">
+<meta property="og:description" content="A CHI 2027 workshop on translating knowledge of human spatial experience into AI-aided architectural design tools and workflows.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --paper: #ffffff;
+    --ink: #1c1e21;
+    --muted: #5d6167;
+    --line: #d9d5cc;
+    --accent: #b5532f;
+    --accent-soft: #f3e3da;
+    --grid: rgba(28, 30, 33, 0.05);
+    --maxw: 1040px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15171a;
+      --paper: #1d2024;
+      --ink: #ebe8e1;
+      --muted: #a3a6ab;
+      --line: #33373d;
+      --accent: #e0825c;
+      --accent-soft: #3a2a22;
+      --grid: rgba(235, 232, 225, 0.04);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+  nav .brand { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  nav ul { display: flex; gap: 20px; list-style: none; overflow-x: auto; scrollbar-width: none; }
+  nav ul::-webkit-scrollbar { display: none; }
+  nav a.link { color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+  nav a.link:hover { color: var(--ink); }
+
+  /* hero */
+  header.hero {
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero .wrap { padding-top: 88px; padding-bottom: 80px; position: relative; }
+  .eyebrow {
+    display: inline-flex; gap: 10px; align-items: center;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--accent); }
+  h1 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-size: clamp(32px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.015em;
+    margin: 20px 0 18px; max-width: 20ch;
+  }
+  .subtitle { font-size: clamp(17px, 2vw, 21px); color: var(--muted); max-width: 44ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 36px; font-size: 15px; }
+  .meta div span { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-block; padding: 11px 20px; border-radius: 3px; font-weight: 500; font-size: 15px;
+    text-decoration: none; border: 1px solid var(--accent);
+  }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.ghost { color: var(--accent); }
+  .plan {
+    position: absolute; right: 24px; bottom: 32px; width: 260px; opacity: 0.9;
+  }
+  @media (max-width: 900px) { .plan { display: none; } }
+
+  /* sections */
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 200px 1fr; gap: 32px; }
+  @media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; gap: 12px; } }
+  .sec-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 8px; }
+  .sec-label b { color: var(--accent); font-weight: 600; margin-right: 8px; }
+  h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.2; margin-bottom: 20px; }
+  h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  p + p { margin-top: 14px; }
+  .lead { font-size: 19px; }
+  .prose { max-width: 68ch; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tags span { font-size: 13px; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
+
+  ul.topics { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 24px; }
+  ul.topics li { background: var(--paper); padding: 18px 20px; font-size: 15px; }
+  ul.topics li b { display: block; font-size: 15px; margin-bottom: 4px; }
+
+  /* dates */
+  .dates { margin-top: 8px; border-top: 1px solid var(--line); }
+  .dates .row { display: grid; grid-template-columns: 210px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .dates .row .d { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .dates .row.hl .d { color: var(--accent); }
+  @media (max-width: 560px) { .dates .row { grid-template-columns: 1fr; gap: 2px; } }
+
+  /* schedule */
+  .sessions { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  @media (max-width: 760px) { .sessions { grid-template-columns: 1fr; } }
+  .session { background: var(--paper); border: 1px solid var(--line); padding: 24px; }
+  .session h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; margin-bottom: 2px; }
+  .session .dur { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .slot { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); font-size: 15px; }
+  .slot .t { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .slot small { display: block; color: var(--muted); font-size: 13.5px; }
+
+  /* people */
+  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin-top: 8px; }
+  .person { background: var(--paper); border: 1px solid var(--line); padding: 18px; display: flex; gap: 14px; align-items: center; }
+  .avatar {
+    flex: none; width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; font-weight: 600; font-size: 16px; overflow: hidden;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .person .n { font-weight: 600; font-size: 15px; line-height: 1.3; }
+  .person .n a { color: var(--ink); text-decoration: none; }
+  .person .n a:hover { color: var(--accent); }
+  .person .a { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+  .speakers .person { padding: 22px; }
+  .speakers .avatar { width: 64px; height: 64px; font-size: 19px; }
+  h3.group { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 36px 0 14px; }
+  h3.group:first-child { margin-top: 0; }
+
+  .callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 18px 22px; margin-top: 24px; font-size: 15.5px; }
+
+  footer { padding: 40px 0 56px; font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  ol.goals { list-style:none; margin-top:24px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+  ol.goals li { background:var(--paper); padding:18px 20px; font-size:15.5px; }
+  ol.goals li b { display:block; font-size:16px; margin-bottom:4px; }
+  .person .r { font-size:12.5px; color:var(--accent); margin-top:2px; line-height:1.35; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">HSE × AI · CHI 2027</a>
+    <ul>
+      <li><a class="link" href="#about">About</a></li>
+      <li><a class="link" href="#cfp">Call for Participation</a></li>
+      <li><a class="link" href="#dates">Dates</a></li>
+      <li><a class="link" href="#program">Program</a></li>
+      <li><a class="link" href="#people">People</a></li>
+      <li><a class="link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">CHI 2027 Workshop</div>
+    <h1>Embedding Human Spatial Experience in AI-Aided Architectural Design</h1>
+    <p class="subtitle">An HCI bridging lens across cognitive science, neuroscience, architecture, and AI.</p>
+    <div class="meta">
+      <div><span>Where</span>Pittsburgh, PA, USA</div>
+      <div><span>When</span>CHI 2027, May 10–14 (day TBA)</div>
+      <div><span>Format</span>In person · 2 × 90 min</div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#cfp">Call for Participation</a>
+      <a class="btn ghost" href="#program">View program</a>
+    </div>
+
+    <svg class="plan" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="2" style="color: var(--ink); opacity: .55">
+        <path d="M10 10 H250 V190 H10 Z"/>
+        <path d="M10 90 H110 M140 90 H250"/>
+        <path d="M130 10 V60 M130 90 V190"/>
+        <path d="M190 90 V140 M190 165 V190"/>
+      </g>
+      <path d="M40 160 C 70 130, 100 130, 125 100 S 170 60, 215 45" stroke="var(--accent)" stroke-width="2.2" stroke-dasharray="5 5"/>
+      <circle cx="40" cy="160" r="5" fill="var(--accent)"/>
+      <circle cx="215" cy="45" r="5" fill="none" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M110 90 A 30 30 0 0 1 140 90" stroke="currentColor" style="color: var(--ink); opacity: .35" stroke-width="1.5"/>
+    </svg>
+  </div>
+</header>
+
+<main>
+
+<section id="about">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>01</b>About</div>
+    <div class="prose">
+      <h2>Why this workshop</h2>
+      <p class="lead">Architectural design shapes human spatial experience: how people perceive, navigate, feel, and act within built environments.</p>
+      <p>Although AI systems can increasingly generate and directly modify architectural representations, they largely consider criteria around spatial properties rather than human properties. Knowledge of human spatial experience remains distributed across cognitive science, neuroscience, and environmental psychology; design computing and computer-aided design; architectural practice; and HCI. These communities differ in how they define experience, establish evidence, and translate findings into design decisions.</p>
+      <p>This workshop brings these communities together and positions HCI as a bridging lens between these knowledge streams. HCI’s focus on people, activities, interactive technologies, and situated decision-making provides a basis for connecting experiential knowledge with design needs, computational representations, and tool interactions.</p>
+      <p><b>Our central question:</b> how can designers and occupants use AI-aided tools to translate knowledge of spatial experience into design decisions while keeping its evidence, assumptions, uncertainty, and limitations open to inspection?</p>
+      <ol class="goals">
+        <li><b>1 · Develop a shared language across communities</b>Clarify how each field defines spatial experience, formulates questions, and establishes evidence, making correspondences and unresolved differences explicit rather than forcing consensus.</li>
+        <li><b>2 · Identify directions for experience-informed tools and workflows</b>Examine how experiential concerns and evidence could inform briefing, representation, generation, comparison, revision, and learning from buildings in use, and when AI support is or is not appropriate.</li>
+        <li><b>3 · Form a reciprocal research agenda</b>Identify questions that use architectural design to advance HCI research on tacit experience, interaction across representations, multi-stakeholder control, contestability, and evaluation over time.</li>
+      </ol>
+      <div class="tags">
+        <span>Cognitive science</span><span>Neuroscience &amp; neuroarchitecture</span><span>Environmental psychology</span>
+        <span>Design computing &amp; CAD</span><span>Architecture</span><span>HCI</span><span>AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cfp">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>02</b>Participate</div>
+    <div>
+      <div class="prose">
+        <h2>Call for Participation</h2>
+        <p>How can architectural design tools and workflows account for how people perceive, navigate, feel, and act within built environments? This workshop explores how AI-aided architectural design can be informed by human spatial experience, connecting knowledge of cognition, behavior, and well-being with the decisions that shape how spaces are designed.</p>
+        <p>We welcome researchers and practitioners across cognitive science, neuroscience, environmental psychology, design computing, architecture, and HCI. We invite contributions that clarify differences in concepts and methods, connect findings to design needs, or question how AI should participate in design workflows.</p>
+      </div>
+      <ul class="topics">
+        <li><b>A spatial-experience concern</b>What aspect of how people perceive, navigate, feel, or act in a space does your work address?</li>
+        <li><b>Evidence or perspective</b>Research, design cases, methods, datasets, or critical perspectives you bring</li>
+        <li><b>A question for another community</b>What could someone from a different discipline help you answer?</li>
+      </ul>
+      <div class="callout">
+        <b>Submissions:</b> position papers (2–4 pages) or short papers (up to 6 pages) presenting a design case, tool or method critique, or research vision, submitted through <a href="#">OpenReview [link TBA]</a>. An implemented AI system is not required. Each submission is reviewed by at least two organizers; we plan to accept about 15 papers.<br><br>
+        The workshop expects about 30 participants. All registered CHI attendees may join, with priority for accepted-paper authors; at least one author of each accepted submission is expected to attend in person. With authors’ permission, accepted contributions and the workshop synthesis will be shared on this website and an open repository.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>03</b>Timeline</div>
+    <div>
+      <h2>Important dates</h2>
+      <div class="dates">
+        <div class="row"><div class="d">Dec 17, 2026</div><div>Accepted CHI workshops announced; call for participation opens</div></div>
+        <div class="row hl"><div class="d">Feb [TBD], 2027</div><div>Paper submission deadline</div></div>
+        <div class="row"><div class="d">[TBD], 2027</div><div>Notification of acceptance (before CHI early registration deadline)</div></div>
+        <div class="row"><div class="d">May 10–14, 2027</div><div>CHI 2027, David L. Lawrence Convention Center, Pittsburgh</div></div>
+      </div>
+      <p style="margin-top:14px;font-size:14px;color:var(--muted)">All deadlines are Anywhere on Earth (AoE).</p>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>04</b>Program</div>
+    <div>
+      <h2>Workshop program</h2>
+      <p class="prose" style="margin-bottom:24px">Two consecutive 90-minute in-person sessions with one break. Participants work in five interdisciplinary groups of five to seven, each facilitated by an organizer and drawing on at least three disciplines.</p>
+      <div class="sessions">
+        <div class="session">
+          <h3>Session 1</h3>
+          <div class="dur">Perspectives and translation gaps · 90 min</div>
+          <div class="slot"><div class="t">10′</div><div>Welcome and shared framing<small>Common task and terms</small></div></div>
+          <div class="slot"><div class="t">45′</div><div>Three invited talks<small>One shared structure: a case, an evidence limit, and a design question</small></div></div>
+          <div class="slot"><div class="t">20′</div><div>Paper presentations<small>Brief presentations of accepted papers</small></div></div>
+          <div class="slot"><div class="t">15′</div><div>Moderated cross-community discussion<small>Map translation gaps; form interdisciplinary groups</small></div></div>
+        </div>
+        <div class="session">
+          <h3>Session 2</h3>
+          <div class="dur">From gaps to a collaborative research agenda · 90 min</div>
+          <div class="slot"><div class="t">·</div><div>Paper presentations</div></div>
+          <div class="slot"><div class="t">·</div><div>Architectural Cognition Cards<small>Activity framing and card walkthrough</small></div></div>
+          <div class="slot"><div class="t">·</div><div>Card-guided group activity<small>Link a concern, evidence, a design stage, and human–AI roles; stress-test concepts</small></div></div>
+          <div class="slot"><div class="t">·</div><div>Research-agenda roundtables<small>Turn concepts into priority questions, methods, and collaborations</small></div></div>
+          <div class="slot"><div class="t">·</div><div>Group reports and synthesis</div></div>
+          <div class="slot"><div class="t">·</div><div>Next steps and group photo</div></div>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:15px;color:var(--muted)">Outcomes: a shared map of translation gaps, candidate directions for experience-informed tools and workflows, and a prioritized research agenda, compiled with the accepted papers into a public report on this website.</p>
+    </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>05</b>People</div>
+    <div>
+      <h2>Speakers &amp; organizers</h2>
+
+      <h3 class="group">Invited speakers</h3>
+      <div class="people speakers">
+        <div class="person"><div class="avatar">KG</div><div><div class="n">Klaus Gramann</div><div class="a">TU Berlin</div><div class="r">Cognition during movement</div></div></div>
+        <div class="person"><div class="avatar">MG</div><div><div class="n">Michal Gath-Morad</div><div class="a">University of Cambridge</div><div class="r">Spatial-cognition evidence into design decisions</div></div></div>
+        <div class="person"><div class="avatar">ZD</div><div><div class="n">Zakaria Djebbara</div><div class="a">Aalborg University</div><div class="r">Embodied affordances; how spaces invite action</div></div></div>
+      </div>
+
+      <h3 class="group">Organizers</h3>
+      <div class="people">
+        <div class="person"><div class="avatar">ET</div><div><div class="n">Esen K. Tütüncü</div><div class="a">Autodesk Research</div><div class="r">Co-lead organizer</div></div></div>
+        <div class="person"><div class="avatar">YL</div><div><div class="n">Yang Chen Lin</div><div class="a">National Tsing Hua University</div><div class="r">Co-lead organizer</div></div></div>
+        <div class="person"><div class="avatar">BA</div><div><div class="n">Bon Adriel Aseniero</div><div class="a">Autodesk Research</div></div></div>
+        <div class="person"><div class="avatar">LG</div><div><div class="n">Lara Gregorians</div><div class="a">Future Cities Lab Global, Singapore–ETH Centre</div></div></div>
+        <div class="person"><div class="avatar">NK</div><div><div class="n">Nayeon Kim</div><div class="a">The Catholic University of Korea</div></div></div>
+        <div class="person"><div class="avatar">PM</div><div><div class="n">Panagiotis Mavros</div><div class="a">Télécom Paris, Institut Polytechnique de Paris</div></div></div>
+        <div class="person"><div class="avatar">DS</div><div><div class="n">Dagmara Szkurlat</div><div class="a">Autodesk Research</div></div></div>
+        <div class="person"><div class="avatar">KW</div><div><div class="n">Kean Walmsley</div><div class="a">Autodesk Research</div></div></div>
+        <div class="person"><div class="avatar">YZ</div><div><div class="n">Yuqin Zhong</div><div class="a">Future Cities Lab Global, Singapore–ETH Centre</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:0">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>06</b>Contact</div>
+    <div class="prose">
+      <h2>Get in touch</h2>
+      <p>Questions about the workshop or submissions? Email the organizers at <a href="mailto:TODO@example.com">[contact email]</a>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Workshop at ACM CHI 2027 · Pittsburgh, USA</div>
+    <div><a href="https://chi2027.acm.org/" target="_blank" rel="noopener">chi2027.acm.org</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
