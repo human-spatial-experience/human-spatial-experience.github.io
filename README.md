@@ -9,3 +9,9 @@ Workshop website: https://human-spatial-experience.github.io/
 4. Settings → Pages → Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
 5. Site is live at https://human-spatial-experience.github.io/ within a few minutes.
 Invite co-organizers to the org so they can edit.
+
+## Editing the schedule
+The Program section is rendered from `agenda.json`.
+1. On the live site, click "Organizers: edit schedule" (or open `/#edit`).
+2. Drag or use the arrows to reorder, −/+ to change minutes; start times recalculate. Drafts stay in your browser.
+3. Click "Copy agenda.json", then "Commit on GitHub", select all, paste, and commit. The site updates in about a minute.

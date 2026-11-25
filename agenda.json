@@ -1,0 +1,109 @@
+{
+  "day": "Day TBA (CHI 2027, May 10–14)",
+  "start": "09:00",
+  "blocks": [
+    {
+      "id": "s1",
+      "kind": "session",
+      "title": "Session 1: Framing the bridge",
+      "target": 90,
+      "items": [
+        {
+          "id": "a1",
+          "title": "Welcome and framing",
+          "who": "Organizers",
+          "dur": 10,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "a2",
+          "title": "Invited talk",
+          "who": "Klaus Gramann",
+          "dur": 15,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "a3",
+          "title": "Invited talk",
+          "who": "Zakaria Djebbara",
+          "dur": 15,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "a4",
+          "title": "Invited talk",
+          "who": "Michal Gath-Morad",
+          "dur": 15,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "a5",
+          "title": "Lightning pitches of position papers",
+          "who": "Workshop participants",
+          "dur": 30,
+          "note": "Number of pitches depends on accepted papers; about 3 min each",
+          "tent": false
+        },
+        {
+          "id": "a6",
+          "title": "Open Q&A",
+          "who": "Speakers and participants",
+          "dur": 5,
+          "note": "",
+          "tent": true
+        }
+      ]
+    },
+    {
+      "id": "b1",
+      "kind": "break",
+      "title": "Coffee break",
+      "target": 30,
+      "items": []
+    },
+    {
+      "id": "s2",
+      "kind": "session",
+      "title": "Session 2: Co-designing tools",
+      "target": 90,
+      "items": [
+        {
+          "id": "c1",
+          "title": "Architectural Cognition Cards: introduction",
+          "who": "Organizers",
+          "dur": 10,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "c2",
+          "title": "Card-based co-design in small groups",
+          "who": "Mixed groups across disciplines",
+          "dur": 35,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "c3",
+          "title": "Breakout synthesis toward a shared research agenda",
+          "who": "Groups",
+          "dur": 25,
+          "note": "",
+          "tent": false
+        },
+        {
+          "id": "c4",
+          "title": "Report-back, next steps and closing",
+          "who": "Organizers",
+          "dur": 15,
+          "note": "",
+          "tent": false
+        }
+      ]
+    }
+  ]
+}

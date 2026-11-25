@@ -161,6 +161,63 @@
   ol.goals li { background:var(--paper); padding:18px 20px; font-size:15.5px; }
   ol.goals li b { display:block; font-size:16px; margin-bottom:4px; }
   .person .r { font-size:12.5px; color:var(--accent); margin-top:2px; line-height:1.35; }
+
+  /* agenda (rendered from agenda.json) */
+  .agmeta { color: var(--muted); margin: -8px 0 20px; font-size: 15px; }
+  .breaks { margin-top: 16px; font-size: 15px; color: var(--muted); }
+  .orgtools { margin-top: 18px; font-size: 13px; }
+  .orgtools button { background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font: inherit; padding: 6px 0; }
+  .orgtools button:hover { color: var(--accent); }
+  .tentag { font-size: 12px; color: var(--accent); }
+  /* organizer edit mode */
+  .editing .sessions { grid-template-columns: 1fr; }
+  .edbar { position: sticky; top: 56px; z-index: 5; background: var(--paper); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 20px; font-size: 14px; }
+  .edbar .r { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: end; }
+  .edbar label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: var(--muted); }
+  .edbar input { height: 40px; padding: 0 8px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--ink); font: inherit; font-size: 15px; }
+  .edbar input[type=text] { width: 15em; max-width: 100%; }
+  .eb { height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; }
+  .eb:hover { border-color: var(--ink); }
+  .eb.pri { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .eb:disabled { opacity: .4; cursor: default; }
+  .edhelp { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .edhelp b { color: var(--ink); }
+  .edhelp.warn b { color: #c0261b; }
+  .ename { width: 100%; font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 20px; border: 1px solid transparent; background: transparent; color: var(--ink); padding: 2px 6px; margin-left: -7px; border-radius: 3px; }
+  .ein { width: 100%; border: 1px solid transparent; background: transparent; color: var(--ink); font: inherit; font-size: 15px; padding: 3px 6px; margin-left: -7px; border-radius: 3px; }
+  .ein.who { font-size: 13.5px; color: var(--muted); }
+  .ename:hover, .ein:hover { border-color: var(--line); }
+  .ename:focus, .ein:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+  .meter { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 13px; color: var(--muted); margin: 6px 0 12px; }
+  .meter .tr { flex: 1 1 120px; height: 7px; background: var(--accent-soft); border-radius: 4px; overflow: hidden; }
+  .meter .fl { height: 100%; background: var(--accent); }
+  .meter.over .fl { background: #c0261b; }
+  .meter.over .mt { color: #c0261b; font-weight: 600; }
+  .meter input { width: 4em; height: 30px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--ink); text-align: right; font: inherit; }
+  .eslot { display: grid; grid-template-columns: 22px 56px minmax(0,1fr) auto auto; gap: 8px; align-items: start; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .eslot.drag { opacity: .4; }
+  .eslot.db { box-shadow: inset 0 3px 0 var(--accent); }
+  .eslot.da { box-shadow: inset 0 -3px 0 var(--accent); }
+  .eslot .t { line-height: 32px; }
+  .hd { cursor: grab; color: var(--muted); line-height: 32px; user-select: none; text-align: center; letter-spacing: -3px; }
+  .chk { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--muted); margin-top: 2px; cursor: pointer; }
+  .chk input { accent-color: var(--accent); }
+  .stp { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 3px; height: 34px; }
+  .stp button { width: 30px; height: 32px; border: 0; background: transparent; color: var(--ink); cursor: pointer; font-size: 16px; }
+  .stp button:hover { background: var(--accent-soft); }
+  .stp input { width: 2.6em; border: 0; background: transparent; color: var(--ink); text-align: right; font: inherit; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .stp span { font-size: 12px; color: var(--muted); padding: 0 6px 0 3px; }
+  .ics { display: flex; }
+  .ic { width: 30px; height: 34px; border: 0; background: transparent; color: var(--muted); cursor: pointer; border-radius: 3px; font-size: 15px; }
+  .ic:hover { background: var(--accent-soft); color: var(--ink); }
+  .ic:disabled { opacity: .3; cursor: default; background: transparent; }
+  .sfoot { display: flex; justify-content: space-between; gap: 8px; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 2px; }
+  .lk { background: none; border: 0; color: var(--accent); cursor: pointer; font: inherit; font-size: 14px; padding: 6px 0; }
+  .lk.dim { color: var(--muted); }
+  .ebrk { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 10px 14px; border: 1px dashed var(--line); margin-top: 12px; font-size: 14px; }
+  .ebrk .ein { width: auto; flex: 1 1 140px; }
+  .ebrk .tm { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 600px) { .eslot { grid-template-columns: 22px 48px minmax(0,1fr); } .eslot .stp, .eslot .ics { grid-column: 3; justify-self: start; } }
 </style>
 </head>
 <body>
@@ -170,6 +227,7 @@
     <a class="brand" href="#top">HSE × AI · CHI 2027</a>
     <ul>
       <li><a class="link" href="#dates">Dates</a></li>
+      <li><a class="link" href="#agenda">Program</a></li>
       <li><a class="link" href="#people">Organizers</a></li>
     </ul>
   </div>
@@ -220,9 +278,23 @@
   </div>
 </section>
 
+<section id="agenda">
+  <div class="wrap sec-head">
+    <div class="sec-label"><b>02</b>Program</div>
+    <div id="agwrap">
+      <h2>Schedule</h2>
+      <p class="agmeta" id="agmeta">Tentative schedule. Times in Pittsburgh local time.</p>
+      <div class="edbar" id="edbar" hidden></div>
+      <div class="sessions" id="sessions"></div>
+      <p class="breaks" id="breaks"></p>
+      <div class="orgtools"><button type="button" id="orgbtn">Organizers: edit schedule</button></div>
+    </div>
+  </div>
+</section>
+
 <section id="people">
   <div class="wrap sec-head">
-    <div class="sec-label"><b>02</b>People</div>
+    <div class="sec-label"><b>03</b>People</div>
     <div>
       <h2>Organizers</h2>
 
@@ -250,5 +322,6 @@
   </div>
 </footer>
 
+<script src="agenda.js"></script>
 </body>
 </html>
